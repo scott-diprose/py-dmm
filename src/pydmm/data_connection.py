@@ -2,6 +2,7 @@
 # import json
 import yaml
 from collections import namedtuple
+# from contextlib import contextmanager
 
 
 # class JsonLoader:
@@ -75,3 +76,18 @@ class YamlLoader:
         except Exception:
             raise
         return result_dict
+
+
+
+
+# @contextmanager
+# def data_connections_open(file_path):
+#     f = open(file_path, 'r', encoding="utf8")
+#     try:
+#         yield f
+#     finally:
+#         f.close()
+
+# # example usage
+# with data_connections_open('file') as f:
+#     contents = f.read()

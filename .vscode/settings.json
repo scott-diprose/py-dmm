@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder}${pathSeparator}src"
+    },
+    "python.terminal.executeInFileDir": false,
+}
