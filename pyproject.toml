@@ -10,9 +10,10 @@ description = "Object model for standardising the structure of metadata applicab
 keywords = ["data pipelines", "data", "pipelines", "metadata"]
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Database",
-    "License :: OSI Approved :: MIT License"
+    "Topic :: Database"
 ]
 readme = "README.md"
 # url='https://github.com/scott-diprose/pydmm',
