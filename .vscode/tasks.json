@@ -1,0 +1,87 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    // "options": {
+    //     "env": {
+    //         "cwd": "${workspaceFolder}",
+    //         "PYTHONPATH": "${workspaceFolder}${pathSeparator}dpc_lib;${PYTHONPATH}",
+    //     },
+    // },
+    "problemMatcher": [],
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": true,
+        "clear": true,
+    },
+    "tasks": [
+        {
+            "label": "Build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "run",
+                "python",
+                "-m",
+                "build",
+            ],
+        },
+        {
+            "label": "Check for security vulnerabilities",
+            "group": "build",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "check",
+            ],
+        },
+        {
+            "label": "Upload to TestPyPI",
+            "group": "test",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "-q",
+                "run",
+                "python",
+                "-m",
+                "twine",
+                "upload",
+                "--repository",
+                "testpypi",
+                "dist/*",
+            ],
+        },
+
+        // {
+        //     "label": "Setup for Package Development",
+        //     // pip install -e .
+        // pip install --extra-index-url https://testpypi.python.org/pypi pydmm
+        // },
+
+        // {
+        //     "label": "Publish to PyPI",
+        //     "group": "none",
+        //     "type": "process",
+        //     "command": "pipenv",
+        //     "args": [
+        //         "run",
+        //         "python",
+        //         "-m",
+        //         "twine",
+        //         "upload",
+        //         "-repository",
+        //         "pypi",
+        //         "dist/*",
+        //     ],
+        // },
+
+    ]
+}
