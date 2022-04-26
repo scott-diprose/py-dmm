@@ -3,8 +3,8 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pydmm"
-version = "0.0.1"
+name = "pydmm-lib"
+version = "0.0.2"
 license = {text = "MIT"}
 description = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
 keywords = ["data pipelines", "data", "pipelines", "metadata"]
@@ -16,7 +16,7 @@ classifiers = [
     "Topic :: Database"
 ]
 readme = "README.md"
-# url='https://github.com/scott-diprose/pydmm',
+# url='https://github.com/scott-diprose/pydmm-lib',
 # authors = [
 #     "Scott Diprose <scott.on.github.gmail.com>"
 # ]
