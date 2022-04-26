@@ -12,7 +12,6 @@ yapf = "*"
 pytest = "*"
 build = "*"
 twine = "*"
-pydmm = {editable = true, path = "."}
 
 [packages]
 lxml = ">=4.8.0"

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm"]
+requires = ["setuptools>=45", "wheel", "setuptools-scm>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,21 +16,27 @@ classifiers = [
     "Topic :: Database"
 ]
 readme = "README.md"
-# url='https://github.com/scott-diprose/pydmm-lib',
+# repository = "https://github.com/scott-diprose/pydmm-lib"
 # authors = [
 #     "Scott Diprose <scott.on.github.gmail.com>"
 # ]
 # python = "^3.8"
-# packages=find_packages(include=('src'), exclude=('tests', 'docs')),
+# Using packages disables the package auto-detection feature
+# packages = [
+#     { include = "pydmm-lib", from = "src" },
+# #     { exclude = "tests" },
+# #     { exclude = "docs" },
+# ]
 dependencies = [
-    "requests",
     'importlib-metadata; python_version<"3.8"',
+    # "requests",
 ]
 # dynamic = ["version"]
 
-[project.optional-dependencies]
-pdf = ["ReportLab>=1.2", "RXP"]
-rest = ["docutils>=0.3", "pack ==1.1, ==1.3"]
 
-[project.scripts]
-my-script = "my_package.module:function"
+# [project.optional-dependencies]
+# pdf = ["ReportLab>=1.2", "RXP"]
+# rest = ["docutils>=0.3", "pack ==1.1, ==1.3"]
+
+# [project.scripts]
+# my-script = "my_package.module:function"
