@@ -46,7 +46,7 @@
             "label": "Set TestPyPI upload token",
             // "detail": "Optional, if using Upload to TestPyPI",
             "group": "build",
-            "type": "shell",
+            "type": "process",
             "command": "pipenv",
             "args": [
                 "run",
@@ -60,7 +60,7 @@
             "label": "Get TestPyPI upload token",
             // "detail": "Check if token stored in keyring",
             "group": "build",
-            "type": "shell",
+            "type": "process",
             "command": "pipenv",
             "args": [
                 "run",
