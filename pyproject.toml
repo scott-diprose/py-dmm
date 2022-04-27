@@ -1,11 +1,14 @@
+# https://packaging.python.org/en/latest/specifications/#
 # https://peps.python.org/pep-0621/
 # https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/
 # https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
 
 [project]
+# metadata-version = "2.3"
 name = "pydtm-lib"
 version = "0.0.2"
 license = {text = "MIT"}
+# summary = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
 description = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
 keywords = ["data pipelines", "data", "pipelines", "metadata"]
 # https://pypi.org/classifiers/
@@ -19,12 +22,7 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
 ]
 readme = "README.md"
-# urls = [
-#     { repository = "https://github.com/scott-diprose/pydtm-lib" },
-# ]
-authors = [
-    { name = "Scott Diprose", email = "scott.on.github@gmail.com" },
-]
+# home-page = "https://github.com/scott-diprose/pydtm-lib"
 requires-python = ">=3.8"
 dependencies = [
     # "jsonschema >= 4.4",
@@ -42,7 +40,6 @@ dependencies = [
 #     # "pre-commit",
 #     # "bump2version",
 # ]
-# dynamic = ["version"]
 
 # [project.scripts]
 # migrate_version = "pydtm.util.upgrade:migrate_version"
@@ -53,7 +50,6 @@ build-backend = "setuptools.build_meta"
 requires = [
     "setuptools >= 58.0",
     "wheel",
-    # "build",
     # "setuptools-scm>=6.2",
 ]
 
@@ -63,14 +59,15 @@ requires = [
 
 [tool.setuptools.package-dir]
 pydtm = "src/pydtm"
-"pydtm.utils" = "src/utils"
+# "pydtm.utils" = "src/utils"
+# "pydtm.templating" = "src/templating"
 
 # [tool.setuptools.packages.find]
 # where = ["src"]
 
 
 [tool.pylint.MASTER]
-jobs = 1
+jobs = 0
 [tool.pylint.STRING]
 check-quote-consistency = "yes"
 [tool.pylint.'MESSAGES CONTROL']
