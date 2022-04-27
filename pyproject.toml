@@ -66,8 +66,6 @@ pydtm = "src/pydtm"
 # where = ["src"]
 
 
-[tool.pylint.MASTER]
-jobs = 0
 [tool.pylint.STRING]
 check-quote-consistency = "yes"
 [tool.pylint.'MESSAGES CONTROL']
