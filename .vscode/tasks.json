@@ -42,24 +42,24 @@
                 "check",
             ],
         },
-        {
-            "label": "Set TestPyPI upload token",
-            // "detail": "Optional, if using Upload to TestPyPI",
-            "group": "build",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "run",
-                "keyring",
-                "set",
-                "https://test.pypi.org/legacy/",
-                "__token__",
-            ],
-        },
+        // {
+        //     "label": "Set TestPyPI upload token",
+        //     // "detail": "Optional, if using Upload to TestPyPI",
+        //     "group": "test",
+        //     "type": "process",
+        //     "command": "pipenv",
+        //     "args": [
+        //         "run",
+        //         "keyring",
+        //         "set",
+        //         "https://test.pypi.org/legacy/",
+        //         "__token__",
+        //     ],
+        // },
         {
             "label": "Get TestPyPI upload token",
-            // "detail": "Check if token stored in keyring",
-            "group": "build",
+            // "detail": "Check if token stored in keyring. Useful if running upload manually.",
+            "group": "test",
             "type": "process",
             "command": "pipenv",
             "args": [
@@ -68,6 +68,22 @@
                 "get",
                 "https://test.pypi.org/legacy/",
                 "__token__",
+            ],
+        },
+        {
+            "label": "Lint source files",
+            "group": "test",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "run",
+                "pylint",
+                "--output-format",
+                // "json,colorized",
+                "parseable,colorized",
+                // "--msg-template",
+                // "{path}:{line}:{column}: {msg_id}: {msg} ({symbol})",
+                "src",
             ],
         },
         {
@@ -88,11 +104,11 @@
             ],
         },
 
-        // {
-        //     "label": "Setup for Package Development",
-        //     // pip install -e .
-        // pip install --extra-index-url https://testpypi.python.org/pypi pydmm
-        // },
+
+
+        //  check for updates before every run of the test suite.
+
+
 
         // {
         //     "label": "Publish to PyPI",

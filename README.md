@@ -1,8 +1,8 @@
-# pydmm-lib
+# pydtm-lib
 
 Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer.
 
 
-pip install pydmm-lib
+pip install pydtm-lib
 
-from pydmm import mapping
+from pydtm import mapping

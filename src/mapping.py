@@ -1,6 +1,10 @@
+"""
+Loads details for how data is mapped from one data model to another.
+"""
+from collections import namedtuple
 # import json
 import yaml
-from collections import namedtuple
+from .dict_utils import nested_dict_to_namedtuple
 
 
 # class JsonLoader:
@@ -34,34 +38,29 @@ from collections import namedtuple
 #         return srcObj[0]
 
 
-class YamlLoader:
-    @staticmethod
-    def __nested_dict_to_namedtuple(src_dict: dict) -> tuple:
-        recursed_dict: dict = {}
-        for key, value in src_dict.items():
-            if isinstance(value, dict):
-                recursed_dict[key] = YamlLoader.__nested_dict_to_namedtuple(
-                    value)
-            else:
-                recursed_dict[key] = value
-        return namedtuple('tuple',
-                          recursed_dict.keys())(*recursed_dict.values())
+# class YamlLoader:
+#     """_summary_
 
-    def load_from_file(file_path: str) -> tuple:
-        """
-        A generator which yields individual data mappings as NamedTuples.
-        Which allows for the use of dot notation in accessing properties.
-        NOTE: For now assuming never multiple documents. That is, doesn't
-        return a generator, but will only ever return the first mapping.
+#     Returns:
+#         _type_: _description_
+#     """
 
-        Args:
-            file_path (str): Filesystem path of YAML file.
+#     @staticmethod
+def load_from_file(file_path: str) -> namedtuple:
+    """
+    A generator which yields individual data mappings as NamedTuples.
+    Which allows for the use of dot notation in accessing properties.
+    NOTE: For now assuming never multiple documents. That is, doesn't
+    return a generator, but will only ever return the first mapping.
 
-        Returns:
-            tuple: The loaded mapping as a named tuple.
-        """
-        with open(file_path, 'r', encoding="utf8") as srcFile:
-            srcObj = yaml.safe_load_all(srcFile)
-            for mapping_entry in srcObj:
-                # yield YamlLoader.__nested_dict_to_namedtuple(mapping_entry)
-                return YamlLoader.__nested_dict_to_namedtuple(mapping_entry)
+    Args:
+        file_path (str): Filesystem path of YAML file.
+
+    Returns:
+        tuple: The loaded mapping as a named tuple.
+    """
+    with open(file_path, 'r', encoding='utf8') as src_file:
+        src_obj = yaml.safe_load_all(src_file)
+        for mapping_entry in src_obj:
+            # yield YamlLoader.__nested_dict_to_namedtuple(mapping_entry)
+            return nested_dict_to_namedtuple(mapping_entry)

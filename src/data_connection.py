@@ -1,8 +1,11 @@
-# details for connecting to known data stores
-# import json
-import yaml
+"""
+Loads details for connecting to known data stores.
+"""
 from collections import namedtuple
 # from contextlib import contextmanager
+# import json
+import yaml
+from .dict_utils import nested_dict_to_namedtuple
 
 
 # class JsonLoader:
@@ -36,46 +39,37 @@ from collections import namedtuple
 #         return srcObj[0]
 
 
-class YamlLoader:
-    @staticmethod
-    def __nested_dict_to_namedtuple(src_dict: dict) -> namedtuple:
-        recursed_dict: dict = {}
-        for key, value in src_dict.items():
-            if isinstance(value, dict):
-                recursed_dict[key] = YamlLoader.__nested_dict_to_namedtuple(
-                    value)
-            else:
-                recursed_dict[key] = value
-        return namedtuple('tuple',
-                          recursed_dict.keys())(*recursed_dict.values())
+# class YamlLoader:
+#     """_summary_
 
-    def load_from_file(file_path: str) -> namedtuple:
-        """
-        Extracts the YAML formatted contents of a metadata file to a dictionary
-        of NamedTuples. Allowing for the use of dot notation in accessing
-        properties.
-        NOTE: There can be multiple documents/connections in the loaded YAML
-        file. Each is added as a keyed entry in the returned object. Using the
-        key from the serialised connection object as the key in the
-        NamedTuple.
+#     Returns:
+#         _type_: _description_
+#     """
 
-        Args:
-            file_path (str): Filesystem path of YAML file.
+    # @staticmethod
+def load_from_file(file_path: str) -> namedtuple:
+    """
+    Extracts the YAML formatted contents of a metadata file to a dictionary
+    of NamedTuples. Allowing for the use of dot notation in accessing
+    properties.
+    NOTE: There can be multiple documents/connections in the loaded YAML
+    file. Each is added as a keyed entry in the returned object. Using the
+    key from the serialised connection object as the key in the
+    NamedTuple.
 
-        Returns:
-            namedtuple:
-        """
-        result_dict: dict = {}
-        try:
-            with open(file_path, 'r', encoding="utf8") as srcFile:
-                srcObj = yaml.safe_load_all(srcFile)
-                for conn in srcObj:
-                    t = YamlLoader.__nested_dict_to_namedtuple(conn)
-                    result_dict[t.metadata.name] = t
+    Args:
+        file_path (str): Filesystem path of YAML file.
 
-        except Exception:
-            raise
-        return result_dict
+    Returns:
+        namedtuple:
+    """
+    result_dict: dict = {}
+    with open(file_path, 'r', encoding='utf8') as src_file:
+        src_obj = yaml.safe_load_all(src_file)
+        for conn in src_obj:
+            n_tuple = nested_dict_to_namedtuple(conn)
+            result_dict[n_tuple.metadata.name] = n_tuple
+    return result_dict
 
 
 

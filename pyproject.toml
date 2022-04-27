@@ -3,11 +3,11 @@ build-backend = "setuptools.build_meta"
 requires = [
     "setuptools>=45",
     "wheel",
-    "setuptools-scm>=6.2",
+    # "setuptools-scm>=6.2",
 ]
 
 [project]
-name = "pydmm-lib"
+name = "pydtm-lib"
 version = "0.0.2"
 license = {text = "MIT"}
 description = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
@@ -20,7 +20,7 @@ classifiers = [
     "Topic :: Database"
 ]
 readme = "README.md"
-# repository = "https://github.com/scott-diprose/pydmm-lib"
+# repository = "https://github.com/scott-diprose/pydtm-lib"
 # authors = [
 #     "Scott Diprose <scott.on.github.gmail.com>"
 # ]
@@ -35,21 +35,35 @@ dependencies = [
 # https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
 
 
-
 # Using packages disables the package auto-detection feature
-# packages = [
-#     { include = "pydmm-lib", from = "src" },
-# #     { exclude = "tests" },
-# #     { exclude = "docs" },
-# ]
-
-# [tool.setuptools.packages.find]
-# where = ["src"]
-# # include = ["pydmm*"]
-# # exclude = ["pydmm.tests*"]
-
+packages = [
+    { include = "pydtm-lib", from = "src" },
+#     { exclude = "tests" },
+#     { exclude = "docs" },
+]
 
 # [project.optional-dependencies]
 
 # [project.scripts]
-# my-script = "pydmm.util:upgrade"
+# my-script = "pydtm.util:upgrade"
+
+
+# [tool.setuptools.packages.find]
+# where = ["src"]
+# # include = ["pydtm*"]
+# # exclude = ["pydtm.tests*"]
+
+
+
+
+[tool.pylint.MASTER]
+jobs = 1
+[tool.pylint.STRING]
+check-quote-consistency = "yes"
+[tool.pylint.'MESSAGES CONTROL']
+disable = [
+    "missing-module-docstring",
+    "no-member",
+]
+# [tool.pylint.TYPECHECK]
+# ignore-on-opaque-inference='yes'
