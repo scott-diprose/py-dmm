@@ -1,3 +1,6 @@
+# Pipfile for Dev environment only, so don't lock versions
+Pipfile.lock
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -102,7 +105,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-# .env  # pipenv will load environment variables from here
+.env
 .venv
 env/
 venv/

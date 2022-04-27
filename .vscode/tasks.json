@@ -19,6 +19,25 @@
     },
     "tasks": [
         {
+            "label": "Install DEV .venv",
+            "group": "build",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "install",
+                "--dev",
+            ],
+        },
+        {
+            "label": "Check for security vulnerabilities",
+            "group": "build",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "check",
+            ],
+        },
+        {
             "label": "Build",
             "group": {
                 "kind": "build",
@@ -31,24 +50,6 @@
                 "python",
                 "-m",
                 "build",
-            ],
-        },
-        {
-            "label": "Review pipenv setup",
-            "group": "build",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "--support",
-            ],
-        },
-        {
-            "label": "Check for security vulnerabilities",
-            "group": "build",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "check",
             ],
         },
         // {

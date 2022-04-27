@@ -7,6 +7,12 @@ verify_ssl = true
 python_version = "3.8"
 
 [dev-packages]
-pydtm = {editable = true, path = "."}
+yapf = "*"
+pylint = "*"
+pytest = "*"
+build = "*"
+twine = "*"
+# pydtm = {path = ".", extras = ["dev"], version="*", editable = true}
 
 [packages]
+pyyaml = ">=6.0"
