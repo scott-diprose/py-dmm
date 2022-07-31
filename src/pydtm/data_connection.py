@@ -5,7 +5,7 @@ from collections import namedtuple
 # from contextlib import contextmanager
 # import json
 import yaml
-from .dict_utils import nested_dict_to_namedtuple
+from pydtm.file_loader import nested_dict_to_namedtuple
 
 
 # class JsonLoader:

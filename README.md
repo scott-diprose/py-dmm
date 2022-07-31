@@ -21,7 +21,7 @@ print(metadata.name)
 
 ## Library Development
 
-Current release requires Python 3.8 and pipenv installed.
+Current release has been tested on Python 3.8.
 
 ```shell
 pipenv sync --dev

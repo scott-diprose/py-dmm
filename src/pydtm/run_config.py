@@ -1,6 +1,7 @@
 from collections import namedtuple
 import yaml
-from .dict_utils import nested_dict_to_namedtuple
+# from pydtm.load_utils import nested_dict_to_namedtuple
+from pydtm.file_loader import nested_dict_to_namedtuple
 
 
 # class YamlLoader:
@@ -13,7 +14,7 @@ from .dict_utils import nested_dict_to_namedtuple
 #     @staticmethod
 def from_file(file_path: str) -> namedtuple:
     """
-    Returns a run config as a NamedTuples. Which allows for the use of dot
+    Returns a run config as a NamedTuple. Which allows for the use of dot
     notation in accessing properties.
     NOTE: For now assuming never multiple documents, and will only ever
     return the first run_conf.

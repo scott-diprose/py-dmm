@@ -1,0 +1,165 @@
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: HSTG
+    type: database
+    description: Persistant Staging Area for the Data Vault / Enterprise Data Warehouse.
+database:
+    sql_dialect: mssql
+connection:
+    type: odbc
+    odbc:
+        connection_string: DRIVER={ODBC Driver 13 for SQL Server};Server=(local);Database=DEV_150_HSTG;Trusted_Connection=yes;
+        # connection_string: DRIVER={ODBC Driver 13 for SQL Server};Server=aubiwsqltst;Database=SYNC_150_HSTG_TST;Trusted_Connection=yes;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: AVAYA
+    type: database
+    description: Avaya - Call Management System (IBM Informix)
+database:
+    sql_dialect: informix
+connection:
+    type: odbc
+    odbc:
+        connection_string: DRIVER={IBM INFORMIX ODBC DRIVER (64-bit)};SRVR=cms_net;HOST=172.30.233.15;SERV=50000;PRO=olsoctcp;DATABASE=cms;DLOC=en_US.57372;CLOC=en_US.CP1252;UID=busintel;PWD=busintel01;
+        supports_transactions: false
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: AVAYA_User_Load
+    type: data_files
+    description: File landing area for user managed data associated with the Avaya - Call Management System.
+data_files:
+    expected_file_format: xlsx
+connection:
+    type: local_directory
+    local_directory:
+        # path: D:\FileTransfer\User_Load\Avaya
+        # path: D:\FileTransfer\TST\User_Load\Avaya
+        path: C:\Users\sdiprose\dev\dagster_pipelines\tests\landing\avaya
+    # type: file_share
+    # file_share:
+    #     protocol: smb
+    #     path: \\aubiwappbld\User_Load\avaya
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: CHECKBOX
+    type: database
+    description: The Checkbox source system, typically utilised for surveys, primarily by Operations.
+database:
+    sql_dialect: mssql
+connection:
+    type: odbc
+    odbc:
+        connection_string: Driver={ODBC Driver 11 for SQL Server};Server=auap2prsql05;Database=checkbox_live;UID=ds_biaccess;PWD=zs7fhGsd!;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: DWIN
+    type: database
+    description: Legacy Insurance Data Warehouse
+database:
+    sql_dialect: oracle
+connection:
+    type: odbc
+    odbc:
+        connection_string: DRIVER={Oracle in instantclient_19_11};DBQ=DWIN;UID=dwreporter;PWD=dwreporter;DBA=R;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: MIDAS
+    type: database
+    description: Policy and Claims Management source system
+database:
+    sql_dialect: oracle
+connection:
+    type: odbc
+    odbc:
+        connection_string: DRIVER={Oracle in instantclient_19_11};DBQ=MIDASPRD_WPH;UID=rptent;PWD=banks1a31;DBA=R;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: TRIDION
+    type: database
+    description: 'Actually just the name of the sever. Not the source system.'
+database:
+    sql_dialect: mssql
+connection:
+    type: odbc
+    odbc:
+        # connection_string: DRIVER={ODBC Driver 13 for SQL Server};Server=aubiwsqlprd;Database=Interface_network_tow_dispatch;Trusted_Connection=yes;
+        connection_string: DRIVER={ODBC Driver 13 for SQL Server};Server=uat_network_towdispatch.uat.sql.maau.group;Database=uat_network_towdispatch;Trusted_Connection=yes;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: OPUS_sftp
+    type: data_files
+    description: File exchange for the OPUS International Health (IH) source system. Covering OSHC (medicare equivalent coverage) for students studying in Australia.
+data_files:
+    expected_file_format: xml
+connection:
+    type: sftp
+    sftp:
+        remote_host: 172.30.234.134
+        user_name: bi_opus_sftp
+        password: taped-i9*Qau
+        remote_directory: /BI
+        delete_from_remote: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: OPUS_landing
+    type: data_files
+    description: File storage area for the OPUS International Health (IH) source system. Covering OSHC (medicare equivalent coverage) for students studying in Australia.
+data_files:
+    expected_file_format: xml
+connection:
+    type: local_directory
+    local_directory:
+        # path: D:\FileTransfer\Landing_Area\OPUS
+        # path: D:\FileTransfer\TST\User_Load\Avaya
+        path: C:\Users\sdiprose\dev\dagster_pipelines\tests\landing\OPUS
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: MSTR_Metadata_UAT
+    type: database
+    description: 'Actually just the name of the sever. Not the source system.'
+database:
+    sql_dialect: mssql
+connection:
+    type: odbc
+    odbc:
+        connection_string: DRIVER={ODBC Driver 13 for SQL Server};Server=MSTR_Metadata.uat.sql.maau.group;Database=MSTR_Metadata;Trusted_Connection=yes;
+        supports_transactions: true
+---
+api_version: v0.beta2
+kind: data_connection
+metadata:
+    name: MSTR_Metadata_PRD
+    type: database
+    description: 'Actually just the name of the sever. Not the source system.'
+database:
+    sql_dialect: mssql
+connection:
+    type: odbc
+    odbc:
+        connection_string: DRIVER={ODBC Driver 13 for SQL Server};Server=AUAP2PRSQL05;Database=MSTR_Metadata;Trusted_Connection=yes;
+        supports_transactions: true

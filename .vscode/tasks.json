@@ -19,26 +19,27 @@
     },
     "tasks": [
         {
-            "label": "Install DEV .venv",
-            "group": "build",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "install",
-                "--dev",
-            ],
-        },
-        {
             "label": "Check for security vulnerabilities",
             "group": "build",
             "type": "process",
             "command": "pipenv",
             "args": [
-                "check",
+                "run",
+                "security-check",
             ],
         },
         {
-            "label": "Build",
+            "label": "Lint source files",
+            "group": "test",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "run",
+                "lint-src",
+            ],
+        },
+        {
+            "label": "Build for Distribution",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -47,9 +48,7 @@
             "command": "pipenv",
             "args": [
                 "run",
-                "python",
-                "-m",
-                "build",
+                "build-src",
             ],
         },
         // {
@@ -67,62 +66,14 @@
         //     ],
         // },
         {
-            "label": "Lint source files",
-            "group": "test",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "run",
-                "pylint",
-                "--output-format",
-                // "json,colorized",
-                "parseable,colorized",
-                // "--msg-template",
-                // "{path}:{line}:{column}: {msg_id}: {msg} ({symbol})",
-                "src",
-            ],
-        },
-        {
             "label": "Upload to TestPyPI",
             "group": "test",
             "type": "process",
             "command": "pipenv",
             "args": [
                 "run",
-                "twine",
-                "upload",
-                "--verbose",
-                "--username",
-                "__token__",
-                "--repository",
-                "testpypi",
-                "dist/*",
+                "deploy-test",
             ],
         },
-
-
-
-        //  check for updates before every run of the test suite.
-
-
-
-        // {
-        //     "label": "Publish to PyPI",
-        //     "group": "none",
-        //     "type": "process",
-        //     "command": "pipenv",
-        //     "args": [
-        //         "-q",
-        //         "run",
-        //         "python",
-        //         "-m",
-        //         "twine",
-        //         "upload",
-        //         "-repository",
-        //         "pypi",
-        //         "dist/*",
-        //     ],
-        // },
-
     ]
 }

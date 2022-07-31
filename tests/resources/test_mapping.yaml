@@ -1,0 +1,143 @@
+---
+api_version: v0.beta2
+kind: mapping
+metadata:
+    name: test_mapping
+    description: ""
+    enabled: true
+source:
+    data_conection:
+        name: AVAYA
+    type: db_object
+    db_object:
+        schema: root
+        name: synonyms
+    validation:
+        type: none
+    change_detection:
+        method: none
+        comment: A full_join is performed in target database by load_pattern implementation.
+target:
+    data_conection:
+        name: HSTG
+    type: db_object
+    db_object:
+        schema: rpt
+        name: AVAYA_SYNONYMS
+    validation:
+        type: none
+    load_pattern: HSTG_WITH_CD
+data_items:
+-   source:
+        type: column
+        column: item_type
+    target:
+        type: column
+        column: ITEM_TYPE
+-   source:
+        type: column
+        column: item_name
+    target:
+        type: column
+        column: ITEM_NAME
+-   source:
+        type: python
+        python: >-
+            '1900-01-01'
+        comment: Placeholder, overridden by OMD finalise, when committing.
+    target:
+        type: column
+        column: OMD_CHANGE_DATETIME
+        data_type: datetime
+        description: This will be the method selected which best identifies when the change or event represented by this record occurred.
+-   source:
+        type: python
+        python: >-
+            '1900-01-01'
+        comment: Placeholder, overridden by OMD finalise, when committing.
+        alternatives:
+        -   type: sql
+            when: target
+            sql: >-
+                sysdatetime()
+            comment: Timestamp for this column should be gathered at time of insert, not when extracted. Where loading to a SQL based data store.
+        -   type: python
+            python: >-
+                datetime.today().strftime("%Y-%m-%d %H:%M:%S.%f")
+            comment: This could be used if no mechanism to obtain a timestamp when committing to a data store. Such as a file store.
+    target:
+        type: column
+        column: OMD_INSERT_DATETIME
+        data_type: datetime
+        description: The timestamp of when a data record arrived in the data warehouse.
+-   source:
+        type: column
+        column: acd_no
+    target:
+        type: column
+        column: ACD_NO
+-   source:
+        type: column
+        column: value
+    target:
+        type: column
+        column: VALUE
+-   source:
+        type: column
+        column: descr
+    target:
+        type: column
+        column: DESCR
+-   source:
+        type: column
+        column: standard
+    target:
+        type: column
+        column: STANDARD
+-   source:
+        type: python
+        python: >-
+            'AVAYA'
+    target:
+        type: column
+        column: OMD_RECORD_SOURCE
+        data_type: text
+        description: Must match the prefix used in the HSTG table naming convention.
+-   source:
+        type: python
+        python: >-
+            'Insert'
+        comment: Placeholder, overridden by OMD finalise, when committing.
+    target:
+        type: column
+        column: OMD_CDC_OPERATION
+        data_type: text
+-   source:
+        type: sql
+        sql: >-
+            SYSDATE
+    target:
+        type: column
+        column: OMD_EVENT_DATETIME
+        data_type: datetime
+        description: >-
+            The timestamp of when a data record was extracted. Given that a change is detected to the previous record.
+            This OMD column name is a little misleading, in that it really represents the CDC timestamp.
+-   source:
+        type: python
+        python: >-
+            0
+        comment: Is not known until have commenced loading to target. Will be updated then.
+    target:
+        type: column
+        column: OMD_INSERT_MODULE_INSTANCE_ID
+        data_type: number
+-   source:
+        type: python
+        python: >-
+            ''
+        comment: Placeholder, overridden by OMD finalise, when committing.
+    target:
+        type: column
+        column: OMD_HASH_FULL_RECORD
+        data_type: text
