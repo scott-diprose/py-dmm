@@ -19,6 +19,25 @@
     },
     "tasks": [
         {
+            "label": "Install DEV .venv",
+            "group": "build",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "install",
+                "--dev",
+            ],
+        },
+        {
+            "label": "Check for security vulnerabilities",
+            "group": "build",
+            "type": "process",
+            "command": "pipenv",
+            "args": [
+                "check",
+            ],
+        },
+        {
             "label": "Build",
             "group": {
                 "kind": "build",
@@ -33,13 +52,34 @@
                 "build",
             ],
         },
+        // {
+        //     "label": "Get TestPyPI upload token",
+        //     // "detail": "Check if token stored in keyring. Useful if running upload manually.",
+        //     "group": "test",
+        //     "type": "process",
+        //     "command": "pipenv",
+        //     "args": [
+        //         "run",
+        //         "keyring",
+        //         "get",
+        //         "https://test.pypi.org/legacy/",
+        //         "__token__",
+        //     ],
+        // },
         {
-            "label": "Check for security vulnerabilities",
-            "group": "build",
+            "label": "Lint source files",
+            "group": "test",
             "type": "process",
             "command": "pipenv",
             "args": [
-                "check",
+                "run",
+                "pylint",
+                "--output-format",
+                // "json,colorized",
+                "parseable,colorized",
+                // "--msg-template",
+                // "{path}:{line}:{column}: {msg_id}: {msg} ({symbol})",
+                "src",
             ],
         },
         {
@@ -48,23 +88,23 @@
             "type": "process",
             "command": "pipenv",
             "args": [
-                "-q",
                 "run",
-                "python",
-                "-m",
                 "twine",
                 "upload",
+                "--verbose",
+                "--username",
+                "__token__",
                 "--repository",
                 "testpypi",
                 "dist/*",
             ],
         },
 
-        // {
-        //     "label": "Setup for Package Development",
-        //     // pip install -e .
-        // pip install --extra-index-url https://testpypi.python.org/pypi pydmm
-        // },
+
+
+        //  check for updates before every run of the test suite.
+
+
 
         // {
         //     "label": "Publish to PyPI",
@@ -72,6 +112,7 @@
         //     "type": "process",
         //     "command": "pipenv",
         //     "args": [
+        //         "-q",
         //         "run",
         //         "python",
         //         "-m",

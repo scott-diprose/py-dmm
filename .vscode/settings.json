@@ -3,4 +3,6 @@
         "PYTHONPATH": "${workspaceFolder}${pathSeparator}src"
     },
     "python.terminal.executeInFileDir": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
 }
