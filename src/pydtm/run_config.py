@@ -1,7 +1,7 @@
 from collections import namedtuple
 import yaml
 # from pydtm.load_utils import nested_dict_to_namedtuple
-from pydtm.file_loader import nested_dict_to_namedtuple
+from .file_loader import nested_dict_to_namedtuple
 
 
 # class YamlLoader:

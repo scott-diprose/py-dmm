@@ -25,6 +25,11 @@
             "command": "setup.dev.cmd",
         },
         {
+            "label": "Validate pyproject.toml",
+            "type": "shell",
+            "command": "validate-pyproject pyproject.toml",
+        },
+        {
             "label": "Upgrade Development Environment",
             "type": "shell",
             "command": ".venv\\Scripts\\activate.bat && python -m pip install --upgrade --require-virtualenv --editable .[dev] && python -m pip freeze > requirements.dev.txt",

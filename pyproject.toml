@@ -58,17 +58,18 @@ requires = [
 
 # https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
 
+# [tool.setuptools.package-dir]
+# pydtm = "src"
+
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["pydtm", "pydtm/models", "pydtm/plugins"]
-
-# [tool.setuptools.package-dir]
-# pydtm = "src/pydtm"
-# "pydtm.models" = "src/models"
+# # # include = ["pydtm*", "pydtm/models", "pydtm/plugins"]
+# # exclude = ["pydtm*"]
+include = ["pydtm"]
 
 
 [tool.pylint.MASTER]
-init-hook = "import sys; import os; sys.path.append('src')"
+# init-hook = "import sys; import os; sys.path.append('src')"
 [tool.pylint.STRING]
 check-quote-consistency = "yes"
 [tool.pylint.'MESSAGES CONTROL']

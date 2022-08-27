@@ -4,7 +4,7 @@ Loads details for how data is mapped from one data model to another.
 from collections import namedtuple
 # import json
 import yaml
-from pydtm.file_loader import nested_dict_to_namedtuple
+from .file_loader import nested_dict_to_namedtuple
 
 
 # class JsonLoader:
