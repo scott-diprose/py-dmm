@@ -1,18 +1,18 @@
 {
     "python.terminal.activateEnvironment": true,
-    "terminal.integrated.env.windows": {
-        "PYTHONPATH": "${workspaceFolder}${pathSeparator}src"
-    },
-    "python.terminal.executeInFileDir": false,
-    "python.analysis.autoSearchPaths": true,
-    "python.envFile": "${workspaceFolder}/.env",
-    "python.analysis.extraPaths": [
-        "src"
-    ],
-    "python.autoComplete.extraPaths": [
-        "src"
-    ],
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "yapf",
+    // "terminal.integrated.env.windows": {
+    //     "PYTHONPATH": "${workspaceFolder}${pathSeparator}src"
+    // },
+    "python.terminal.executeInFileDir": false,
+    // "python.analysis.autoSearchPaths": true,
+    "python.envFile": "${workspaceFolder}/.env",
+    // "python.analysis.extraPaths": [
+    //     "src"
+    // ],
+    // "python.autoComplete.extraPaths": [
+    //     "src"
+    // ],
 }

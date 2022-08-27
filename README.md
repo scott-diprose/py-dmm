@@ -21,13 +21,12 @@ print(metadata.name)
 
 ## Library Development
 
-Current release has been tested on Python 3.8.
+Current release has been tested on Python 3.10.4
 
 ```shell
-pipenv sync --dev
+setup.dev.cmd
 ```
 
 Tasks are configured for the Visual Studio Code editor.
-TODO: Look into moving to pyproject.toml
 
 Ideas and constructive criticism welcome: https://github.com/scott-diprose/pydtm-lib/discussions

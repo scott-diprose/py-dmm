@@ -3,7 +3,7 @@
 # https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/
 # https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
 
-# REM (not in pipenv shell): validate-pyproject pyproject.toml
+# REM (not in venv shell): validate-pyproject pyproject.toml
 
 [project]
 # metadata-version = "2.3"
@@ -25,18 +25,27 @@ classifiers = [
 ]
 readme = "README.md"
 # home-page = "https://github.com/scott-diprose/pydtm-lib"
+
 requires-python = ">=3.10"
 dependencies = [
-    # "jsonschema >= 4.4",
-    "pyyaml >= 6.0",
-    # "lxml >= 4.8.0",
+    "jsonschema",
+    "pyyaml",
+    "lxml"
 ]
-# currently dev env handled by pipenv/pipfile
-# [project.optional-dependencies]
-# dev = []
+
+[project.optional-dependencies]
+dev = [
+    "safety",
+    "pylint",
+    "yapf",
+    "pytest",
+    "pytest-cov",
+    "build",
+    "twine"
+]
 
 # [project.scripts]
-# migrate_version = "pydtm.util.upgrade:migrate_version"
+# pydtm_migrate = "pydtm.util.upgrade:migrate_version"
 
 
 [build-system]
@@ -65,7 +74,16 @@ init-hook = "import sys; import os; sys.path.append('src')"
 [tool.pylint.STRING]
 check-quote-consistency = "yes"
 [tool.pylint.'MESSAGES CONTROL']
+max-line-length = 88
 disable = [
     "missing-module-docstring",
     "no-member",
 ]
+
+[tool.yapf]
+column_limit = 88
+
+[tool.pytest.ini_options]
+
+[tool.coverage.run]
+source = ["src"]

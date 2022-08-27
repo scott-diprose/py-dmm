@@ -17,26 +17,44 @@
         "showReuseMessage": true,
         "clear": true,
     },
+
     "tasks": [
         {
-            "label": "Check for security vulnerabilities",
-            "group": "build",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "run",
-                "security-check",
-            ],
+            "label": "Setup Development Environment",
+            "type": "shell",
+            "command": "setup.dev.cmd",
         },
         {
-            "label": "Lint source files",
+            "label": "Upgrade Development Environment",
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && python -m pip install --upgrade --require-virtualenv --editable .[dev] && python -m pip freeze > requirements.dev.txt",
+        },
+        {
+            "label": "Security Check",
             "group": "test",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "run",
-                "lint-src",
-            ],
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && safety check"
+        },
+        {
+            "label": "Lint Source Files",
+            "group": "test",
+            "type": "shell",
+            // "command": ".venv\\Scripts\\activate.bat && pylint --output-format parseable,colorized ./src ./test",
+            "command": ".venv\\Scripts\\activate.bat && pylint --output-format parseable,colorized ./src",
+        },
+        {
+            "label": "Test",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && pytest",
+        },
+        {
+            "label": "Format Source Files",
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && yapf --in-place --recursive ./src ./test",
         },
         {
             "label": "Build for Distribution",
@@ -44,13 +62,10 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "run",
-                "build-src",
-            ],
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && python -m build"
         },
+
         // {
         //     "label": "Get TestPyPI upload token",
         //     // "detail": "Check if token stored in keyring. Useful if running upload manually.",
@@ -65,15 +80,16 @@
         //         "__token__",
         //     ],
         // },
+
+        // # https: //test.pypi.org/project/pydtm-lib/
+        // deploy-test = "pipenv run twine upload --verbose --username __token__ --repository testpypi dist/*"
+        // # deploy-production = "pipenv -q run python -m twine upload -repository pypi dist/*"
+
         {
             "label": "Upload to TestPyPI",
-            "group": "test",
-            "type": "process",
-            "command": "pipenv",
-            "args": [
-                "run",
-                "deploy-test",
-            ],
+            "group": "build",
+            "type": "shell",
+            "command": ".venv\\Scripts\\activate.bat && deploy-test",
         },
     ]
 }

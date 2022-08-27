@@ -41,7 +41,7 @@ connection:
     local_directory:
         # path: D:\FileTransfer\User_Load\Avaya
         # path: D:\FileTransfer\TST\User_Load\Avaya
-        path: C:\Users\sdiprose\dev\dagster_pipelines\tests\landing\avaya
+        path: C:\Users\sdiprose\dev\dagster_pipelines\test\landing\avaya
     # type: file_share
     # file_share:
     #     protocol: smb
@@ -134,7 +134,7 @@ connection:
     local_directory:
         # path: D:\FileTransfer\Landing_Area\OPUS
         # path: D:\FileTransfer\TST\User_Load\Avaya
-        path: C:\Users\sdiprose\dev\dagster_pipelines\tests\landing\OPUS
+        path: C:\Users\sdiprose\dev\dagster_pipelines\test\landing\OPUS
 ---
 api_version: v0.beta2
 kind: data_connection

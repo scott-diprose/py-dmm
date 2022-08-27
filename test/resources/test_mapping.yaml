@@ -15,7 +15,7 @@ source:
     validation:
         type: none
     change_detection:
-        method: none
+        type: none
         comment: A full_join is performed in target database by load_pattern implementation.
 target:
     data_conection:
@@ -26,7 +26,9 @@ target:
         name: AVAYA_SYNONYMS
     validation:
         type: none
-    load_pattern: HSTG_WITH_CD
+    load_pattern:
+        type: hstg
+        hstg: HSTG_WITH_CD
 data_items:
 -   source:
         type: column
