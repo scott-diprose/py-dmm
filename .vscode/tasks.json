@@ -39,7 +39,7 @@
             "label": "Lint Source Files",
             "group": "test",
             "type": "shell",
-            // "command": ".venv\\Scripts\\activate.bat && pylint --output-format parseable,colorized ./src ./test",
+            // "command": ".venv\\Scripts\\activate.bat && pylint --output-format parseable,colorized ./src ./tests",
             "command": ".venv\\Scripts\\activate.bat && pylint --output-format parseable,colorized ./src",
         },
         {
@@ -54,7 +54,7 @@
         {
             "label": "Format Source Files",
             "type": "shell",
-            "command": ".venv\\Scripts\\activate.bat && yapf --in-place --recursive ./src ./test",
+            "command": ".venv\\Scripts\\activate.bat && yapf --in-place --recursive ./src ./tests",
         },
         {
             "label": "Build for Distribution",

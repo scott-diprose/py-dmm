@@ -56,17 +56,15 @@ requires = [
     # "setuptools-scm>=6.2",
 ]
 
-# [tool.setuptools]
-# package-dir = {"" = "src"}
-# packages = ["pydtm"]
+# https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
 
-[tool.setuptools.package-dir]
-pydtm = "src/pydtm"
-# "pydtm.utils" = "src/utils"
-# "pydtm.templating" = "src/templating"
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pydtm", "pydtm/models", "pydtm/plugins"]
 
-# [tool.setuptools.packages.find]
-# where = ["src"]
+# [tool.setuptools.package-dir]
+# pydtm = "src/pydtm"
+# "pydtm.models" = "src/models"
 
 
 [tool.pylint.MASTER]

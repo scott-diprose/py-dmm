@@ -18,3 +18,27 @@ Returns: NamedTuple:
 - DataFrame. Containing the compared columns, with a sample of 10 rows
     for each discrepancy type: matched, not matched, and only in one of the datasets.
 """
+
+
+class DataAssert:
+    """TODO
+    """
+
+    def __init__(self) -> None:
+        raise NotImplementedError()
+
+    def to_do(self, tada):
+        """TODO
+
+        Raises:
+            NotImplementedError: place holder function
+        """
+        raise NotImplementedError()
+
+    def to_do2(self, tada):
+        """TODO
+
+        Raises:
+            NotImplementedError: place holder function
+        """
+        raise NotImplementedError()

@@ -27,7 +27,7 @@ pkginfo==1.8.3
 platformdirs==2.5.2
 pluggy==1.0.0
 py==1.11.0
--e git+ssh://git@github.com/scott-diprose/pydtm-lib.git@1ad1fd0beb2f5d6cca0ea44096fd3b287574c9a0#egg=pydtm_lib
+-e git+ssh://git@github.com/scott-diprose/pydtm-lib.git@a91954a06cb88bb8dff08dcec3f5d25af6f29bad#egg=pydtm_lib
 Pygments==2.13.0
 pylint==2.15.0
 pyparsing==3.0.9
