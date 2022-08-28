@@ -8,7 +8,7 @@
 [project]
 # metadata-version = "2.3"
 name = "pydtm-lib"
-version = "0.0.3"
+version = "0.0.4"
 license = {text = "MIT"}
 # summary = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
 description = "Object model for standardising the structure of metadata applicable for mapping from one source data set to a target. Potentially being reshaped during the transfer."
