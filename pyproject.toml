@@ -56,16 +56,12 @@ requires = [
     # "setuptools-scm>=6.2",
 ]
 
-# https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
-
-# [tool.setuptools.package-dir]
-# pydtm = "src"
+# # https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
 
 [tool.setuptools.packages.find]
 where = ["src"]
-# # # include = ["pydtm*", "pydtm/models", "pydtm/plugins"]
-# # exclude = ["pydtm*"]
-include = ["pydtm"]
+include = ["pydtm*"]
+# include = ["pydtm", "pydtm.models", "pydtm.plugins*"]
 
 
 [tool.pylint.MASTER]
@@ -77,6 +73,7 @@ max-line-length = 88
 disable = [
     "missing-module-docstring",
     "no-member",
+    # "too-few-public-methods",
 ]
 
 [tool.yapf]

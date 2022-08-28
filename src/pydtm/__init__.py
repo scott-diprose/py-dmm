@@ -1,3 +1,4 @@
-from . import data_connection
-from . import mapping
-from . import run_config
+from pydtm import utils
+# from pydtm.models.data_connection import
+from pydtm.models.mapping import Mapping
+# from pydtm.models.run_config import

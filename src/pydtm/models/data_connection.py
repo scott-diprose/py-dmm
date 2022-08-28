@@ -1,20 +1,21 @@
 """
-Loads details for how data is mapped from one data model to another.
+Loads details for connecting to known data stores.
 """
 from collections import namedtuple
+# from contextlib import contextmanager
 # import json
 import yaml
-from .file_loader import nested_dict_to_namedtuple
+from pydtm.utils import nested_dict_to_namedtuple
 
 
 # class JsonLoader:
 #     @staticmethod
-#     def __metadata_encoder(src_dict: dict) -> tuple:
+#     def __metadata_encoder(src_dict: dict) -> namedtuple:
 #         object_name = str.replace(next(iter(src_dict.keys())), 'mappingName',
 #                                   'MappedDataSet')
 #         return namedtuple(object_name, src_dict.keys())(*src_dict.values())
 
-#     def load_from_file(file_path: str) -> tuple:
+#     def load_from_file(file_path: str) -> namedtuple:
 #         """
 #         Extracts the JSON formatted contents of a metadata file to a NamedTuple.
 #         Allowing for the use of dot notation in accessing properties.
@@ -25,7 +26,7 @@ from .file_loader import nested_dict_to_namedtuple
 #             file_path (str): Filesystem path of JSON file.
 
 #         Returns:
-#             tuple: namedtuple
+#             namedtuple:
 #         """
 #         try:
 #             with open(file_path, 'r', encoding="utf8") as srcFile:
@@ -45,22 +46,42 @@ from .file_loader import nested_dict_to_namedtuple
 #         _type_: _description_
 #     """
 
-#     @staticmethod
+    # @staticmethod
 def load_from_file(file_path: str) -> namedtuple:
     """
-    A generator which yields individual data mappings as NamedTuples.
-    Which allows for the use of dot notation in accessing properties.
-    NOTE: For now assuming never multiple documents. That is, doesn't
-    return a generator, but will only ever return the first mapping.
+    Extracts the YAML formatted contents of a metadata file to a dictionary
+    of NamedTuples. Allowing for the use of dot notation in accessing
+    properties.
+    NOTE: There can be multiple documents/connections in the loaded YAML
+    file. Each is added as a keyed entry in the returned object. Using the
+    key from the serialised connection object as the key in the
+    NamedTuple.
 
     Args:
         file_path (str): Filesystem path of YAML file.
 
     Returns:
-        tuple: The loaded mapping as a named tuple.
+        namedtuple:
     """
+    result_dict: dict = {}
     with open(file_path, 'r', encoding='utf8') as src_file:
         src_obj = yaml.safe_load_all(src_file)
-        for mapping_entry in src_obj:
-            # yield YamlLoader.__nested_dict_to_namedtuple(mapping_entry)
-            return nested_dict_to_namedtuple(mapping_entry)
+        for conn in src_obj:
+            n_tuple = nested_dict_to_namedtuple(conn)
+            result_dict[n_tuple.metadata.name] = n_tuple
+    return result_dict
+
+
+
+
+# @contextmanager
+# def data_connections_open(file_path):
+#     f = open(file_path, 'r', encoding="utf8")
+#     try:
+#         yield f
+#     finally:
+#         f.close()
+
+# # example usage
+# with data_connections_open('file') as f:
+#     contents = f.read()

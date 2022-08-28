@@ -5,7 +5,7 @@ IF %ERRORLEVEL% NEQ 0 (
 )
 
 @REM python -m pip install --upgrade --require-virtualenv --editable .[dev]
-@REM python -m pip freeze > requirements.dev.txt
+@REM python -m pip freeze --exclude-editable > requirements.dev.txt && echo -e . >> requirements.dev.txt
 
 python -m pip install -r requirements.dev.txt --require-virtualenv
 EXIT /B %ERRORLEVEL%
