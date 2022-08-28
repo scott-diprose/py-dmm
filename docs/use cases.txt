@@ -1,0 +1,22 @@
+From Source Dataset
+scenarios:
+- file
+- API
+- database table
+- query language
+
+linked/mapped by either:
+- column based mapping (including inline calculations)
+- specify/identify transform function or component (potentially external)
+
+To Target Dataset
+scenarios:
+- file
+- API
+- database table
+- in-memory data structure (e.g. for script/notebook or pipeline task)
+
+---
+
+pipelines may consist of multiple mappings
+
